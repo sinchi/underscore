@@ -460,3 +460,9 @@ body{
 .direct-chat-success .right>.direct-chat-text:after, .direct-chat-success .right>.direct-chat-text:before {
     border-left-color: #00a65a;
 }
+
+.col-md-3.absolue{
+  position: absolute;
+  bottom: 0px;
+  right:0px;
+}
