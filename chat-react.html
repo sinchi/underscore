@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Chat</title>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="chat.css" />
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/react/react.min.js"></script>
+  <script src="bower_components/react/react-dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
+  <script type="text/babel">
+
+      var Entete = React.createClass({
+        render(){
+          return (
+            <div className=" row border-bottom padding-sm" style={ {height: "40px"}}>
+              { this.props.title }
+            </div>
+          )
+        }
+      });
+
+      var FriendsListContent = React.createClass({
+        render(){
+          return (
+            <div className="col-md-4 bg-white ">
+                { this.props.children }
+        	 </div>
+          )
+        }
+      });
+
+      var FriendsList = React.createClass({
+        render(){
+          var friend = {
+            avatar: "http://bootdey.com/img/Content/user_1.jpg",
+            name: "Johne Doe",
+            lastMessage: "Hello, Are you there ?",
+            date: "Just now",
+            count: 23,
+            active: "active bounceInDown"
+          };
+          return(
+            <ul className="friend-list">
+              <FriendsListItem friend={ friend } />
+            </ul>
+          )
+        }
+      });
+
+      var FriendsListItem = React.createClass({
+        render(){          
+
+          return (
+            <li className={ this.props.friend.active }>
+              <a href="#" className="clearfix">
+                <img src={ this.props.friend.avatar } alt="" className="img-circle" />
+                <div className="friend-name">
+                  <strong>{ this.props.friend.name }</strong>
+                </div>
+                <div className="last-message text-muted">{ this.props.friend.lastMessage }</div>
+                <small className="time text-muted">{ this.props.friend.date }</small>
+                <small className="chat-alert label label-danger">{ this.props.friend.count }</small>
+              </a>
+            </li>
+          )
+        }
+      });
+
+      var DetailFriendMessageContent = React.createClass({
+        render(){
+          return (
+            	<div className="col-md-8 bg-white ">
+                  { this.props.children }
+              </div>
+          )
+        }
+      });
+
+      var ChatMessagesContent = React.createClass({
+        render(){
+          return (
+            <div class="chat-message">
+                { this.props.children }
+            </div>
+          )
+        }
+      });
+
+      var ChatMessageList = React.createClass({
+        render(){
+          var message = {
+            position: "right",
+            image:{
+              src: "http://bootdey.com/img/Content/user_3.jpg",
+              alt: "User Avatar",
+            },
+            username: "John Doe",
+            date:"12 mins ago",
+            content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          };
+          return (
+            <ul className="chat">
+              <ChatMessageItem message={ message }/>
+            </ul>
+          )
+        }
+      });
+
+      var ChatMessageItem = React.createClass({
+        render(){
+          return (
+            <li className={ this.props.message.position + " clearfix" }>
+              <span className={"chat-img pull-" + this.props.message.position }>
+                <img src={ this.props.message.image.src } alt={ this.props.message.image.alt } />
+              </span>
+              <div className="chat-body clearfix">
+                <div className="header">
+                  <strong className="primary-font">{ this.props.message.username }</strong>
+                  <small className="pull-right text-muted"><i className="fa fa-clock-o"></i> { this.props.message.date }</small>
+                </div>
+                <p>
+                  { this.props.message.content }
+                </p>
+              </div>
+            </li>
+          )
+        }
+      });
+
+      var App = React.createClass({
+        render(){
+          return (
+            <div className="row">
+              <FriendsListContent>
+                <Entete title="Membre" />
+                <FriendsList />
+              </FriendsListContent>
+                <DetailFriendMessageContent>
+                  <ChatMessagesContent>
+                    <ChatMessageList />
+                  </ChatMessagesContent>
+                </DetailFriendMessageContent>
+            </div>
+          );
+        }
+      });
+        ReactDOM.render(
+           <App />,
+           document.getElementById('example')
+         );
+  </script>
+</head>
+
+<body>
+  <div class="container bootstrap snippet" id="example"></div>
+</body>
+</html>
