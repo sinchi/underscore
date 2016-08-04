@@ -94,7 +94,7 @@
       var ChatMessageList = React.createClass({
         render(){
           var message = {
-            position: "right",
+            position: "left",
             image:{
               src: "http://bootdey.com/img/Content/user_3.jpg",
               alt: "User Avatar",
@@ -103,10 +103,34 @@
             date:"12 mins ago",
             content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           };
-          
+          var messages = [
+            {
+              position: "right",
+              image:{
+                src: "http://bootdey.com/img/Content/user_3.jpg",
+                alt: "User Avatar",
+              },
+              username: "John Doe",
+              date:"12 mins ago",
+              content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            },
+            {
+              position: "left",
+              image:{
+                src: "http://bootdey.com/img/Content/user_2.jpg",
+                alt: "User Avatar",
+              },
+              username: "Sinchi Ayoub",
+              date:"12 mins ago",
+              content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            }
+          ];
+          var chatMessages = _.map(messages, function(message){
+            return <ChatMessageItem message={ message } />
+          });
           return (
             <ul className="chat">
-              <ChatMessageItem message={ message }/>
+              { chatMessages }
             </ul>
           )
         }
